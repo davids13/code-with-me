@@ -1,0 +1,4 @@
+WEBSOCKET:
+    - uses TCP
+    - bidirectional, the server can initiate the request
+    - for real-time events

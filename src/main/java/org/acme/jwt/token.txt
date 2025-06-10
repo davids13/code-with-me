@@ -1,0 +1,15 @@
+forged token:
+    -  the JWT. It’s short for JSON Web Token—a three-part digital passport,
+       often passed around in HTTP headers like a VIP backstage pass
+    - Forgery happens when this signature is faked or if an API doesn’t verify it properly
+
+jwt structure:
+    - x.y.z
+    x - header: algorithm and type (e.g., rs256, jwt)
+    y - payload: claims about the entity (like sub, upn, groups, etc)
+    z - signature: the proof. signed with private key; verified with public one
+
+cryptographic lock:
+    - one key locks (private key)
+    - another opens (public key)
+    - this ensures that only the token issuer can sign, but anyone can verify
