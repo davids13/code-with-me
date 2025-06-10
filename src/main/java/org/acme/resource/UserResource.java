@@ -1,5 +1,6 @@
-package graphql;
+package org.acme.resource;
 
+import org.acme.graphqll.User;
 import org.eclipse.microprofile.graphql.Description;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Name;

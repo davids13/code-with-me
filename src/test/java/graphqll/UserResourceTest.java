@@ -1,4 +1,4 @@
-package graphql;
+package graphqll;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ class UserResourceTest {
                 .post(GRAPHQL)
                 .then()
                 .statusCode(STATUS_CODE_200)
-                .body("data.user.name", equalTo("Alice"));
+                .body("data.user.name", equalTo("Bob"));
     }
 
     @Test

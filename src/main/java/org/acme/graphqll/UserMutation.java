@@ -1,4 +1,4 @@
-package graphql;
+package org.acme.graphqll;
 
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Mutation;
