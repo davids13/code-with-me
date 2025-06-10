@@ -77,6 +77,11 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-graphql</artifactId>
         </dependency>
+        <!-- HTML template -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-rest-qute</artifactId>
+        </dependency>
         <!-- test -->
         <dependency>
             <groupId>io.quarkus</groupId>

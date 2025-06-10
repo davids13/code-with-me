@@ -1,6 +1,10 @@
 ### swagger ui
 http://localhost:8080/q/graphql-ui
 
+### hello
+GET http://localhost:8080/hello
+Content-Type: */*
+
 ### JWT
 GET http://localhost:8080/auth/login?username=alice&role=user
 Content-Type: */*
@@ -23,19 +27,16 @@ GET http://localhost:8080/secured/hello
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3F1YXJrdXMuaW8vand0LWNhc2UiLCJ1cG4iOiJib2IiLCJncm91cHMiOlsiYWRtaW4iXSwiaWF0IjoxNzQ5NTg5MDM4LCJleHAiOjE3NDk1OTI2MzgsImp0aSI6IjUyNGFjMTRiLTg0NGItNGVhYS1hZmE0LTcyMmQyY2VkYzdhNSJ9.ftPrcwOwVPP1fAG-yMyFav5HKs4Dyih7yeuc8u885i8QOan4lB0SJuv2WZO62lrS60NI5o1nnJoLycHJ62z0J3P_5w78dGR4wWFGIWJMofBr1n0lsfulmIJgCvzGIWpePZot3MGfSIgL_uZ50PPNq8tv_8WsLCw0neoz_L5C9Xa6aTdVFdpwxHGANJe761fehDVz-UgVvmeUQrdwmpxnZ9srU1bwbXNpgsin55H5_kTmprMxdGgKQ19uW0wMInlp2vhWSRPXjBMkxU-ESeV1oYUnkCg_NV1qH1ZmWPfuW014_hQ4xONaLiKJu0AwqWllx6l3ueC5Yo3j4Bvhd3KOdA
 Content-Type: */*
 
+### errors
+http://localhost:8080/error → HTML error
 
+### errors
+GET http://localhost:8080/api/error
+Content-Type: application/json
 
-
-
-
-
-
-
-
-
-
-
-
+### errors
+GET http://localhost:8080/custom-error
+Content-Type: application/json
 
 ###
 POST http://localhost:8080/hello
@@ -63,16 +64,4 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/hello/mappedError/5
-Content-Type: application/json
-
-###
-GET http://localhost:8080/hello/error
-Content-Type: application/json
-
-###
-GET http://localhost:8080/hello/api/error
-Content-Type: application/json
-
-###
-GET http://localhost:8080/hello/custom-error
 Content-Type: application/json
