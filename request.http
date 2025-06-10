@@ -1,3 +1,6 @@
+### swagger ui
+http://localhost:8080/q/graphql-ui
+
 ### JWT
 GET http://localhost:8080/auth/login?username=alice&role=user
 Content-Type: */*
