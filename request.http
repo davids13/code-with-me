@@ -38,6 +38,14 @@ Content-Type: application/json
 GET http://localhost:8080/custom-error
 Content-Type: application/json
 
+### filters
+GET http://localhost:8080/filters
+Content-Type: */*
+
+### filters
+GET http://localhost:8080/filters/audited
+Content-Type: */*
+
 ###
 POST http://localhost:8080/hello
 Content-Type: application/json
