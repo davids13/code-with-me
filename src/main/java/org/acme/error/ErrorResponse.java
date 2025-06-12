@@ -1,9 +1,9 @@
 package org.acme.error;
 
 public class ErrorResponse {
-    public String errorCode;
-    public String message;
-    public long timestamp;
+    String errorCode;
+    String message;
+    long timestamp;
 
     public ErrorResponse() {
     }

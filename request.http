@@ -68,7 +68,7 @@ Content-Type: application/json
   "description": "From curl"
 }
 
-###
+### restResponse
 GET http://localhost:8080/items/with-headers
 Content-Type: application/json
 
@@ -78,4 +78,17 @@ Content-Type: application/json
 
 ### restResponse
 GET http://localhost:8080/items/0
+Content-Type: application/json
+
+### flyway
+POST http://localhost:8080/people
+Content-Type: application/json
+
+{
+  "name": "Alice",
+  "email": "alice@example.com"
+}
+
+### flyway
+GET http://localhost:8080/people
 Content-Type: application/json
