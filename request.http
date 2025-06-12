@@ -92,3 +92,17 @@ Content-Type: application/json
 ### flyway
 GET http://localhost:8080/people
 Content-Type: application/json
+
+### secure authentication jpa
+GET http://localhost:8080/secured-api/admin
+Content-Type: application/json
+Authorization: Basic YWxpY2U6YWxpY2VQYXNzd29yZA==
+
+### secure authentication jpa
+GET http://localhost:8080/secured-api/user
+Content-Type: application/json
+Authorization: Basic YWxpY2U6YWxpY2VQYXNzd29yZA==
+
+### secure authentication jpa
+GET http://localhost:8080/secured-api/public
+Content-Type: application/json
