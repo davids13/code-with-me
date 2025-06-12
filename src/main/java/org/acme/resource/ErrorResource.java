@@ -39,4 +39,5 @@ public class ErrorResource {
     public String triggerCustomError() {
         throw new MyCustomApplicationException("This is a test of the custom application exception.");
     }
+
 }

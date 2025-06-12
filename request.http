@@ -46,30 +46,36 @@ Content-Type: */*
 GET http://localhost:8080/filters/audited
 Content-Type: */*
 
-###
-POST http://localhost:8080/hello
+### restResponse
+GET http://localhost:8080/items/simple/1
+Content-Type: application/json
+
+### restResponse
+GET http://localhost:8080/items/simple-list
+Content-Type: application/json
+
+### restResponse
+GET http://localhost:8080/items/direct/1
+Content-Type: application/json
+
+### restResponse
+POST http://localhost:8080/items
 Content-Type: application/json
 
 {
+  "id": "1",
   "name": "New Awesome Item",
   "description": "From curl"
 }
 
 ###
-GET http://localhost:8080/hello/1dc4ca0e-2763-41fa-a4e7-8a4fe3b400b0
-
-###
-GET http://localhost:8080/hello/empty
+GET http://localhost:8080/items/with-headers
 Content-Type: application/json
 
-###
-GET http://localhost:8080/hello/itemById/2
+### restResponse
+GET http://localhost:8080/items/notfoundexample/5
 Content-Type: application/json
 
-###
-GET http://localhost:8080/hello/withCustomHeaders
-Content-Type: application/json
-
-###
-GET http://localhost:8080/hello/mappedError/5
+### restResponse
+GET http://localhost:8080/items/0
 Content-Type: application/json
