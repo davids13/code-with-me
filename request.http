@@ -1,6 +1,9 @@
 ### swagger ui
 http://localhost:8080/q/graphql-ui
 
+### swagger ui
+http://localhost:8080/q/dev-ui/io.quarkus.quarkus-smallrye-openapi/swagger-ui
+
 ### hello
 GET http://localhost:8080/hello
 Content-Type: */*
@@ -106,3 +109,28 @@ Authorization: Basic YWxpY2U6YWxpY2VQYXNzd29yZA==
 ### secure authentication jpa
 GET http://localhost:8080/secured-api/public
 Content-Type: application/json
+
+### tenant
+POST http://localhost:8080/api/todos
+accept: */*
+Authorization: Basic YWxpY2U6YWxpY2VwYXNzd29yZA==
+Content-Type: application/json
+
+{
+  "title": "Buy lembas bread"
+}
+
+### tenant
+GET http://localhost:8080/api/todos
+accept: */*
+Authorization: Basic YWxpY2U6YWxpY2VwYXNzd29yZA==
+
+### tenant
+GET http://localhost:8080/api/todos/1
+accept: */*
+Authorization: Basic Ym9iOmJvYnBhc3N3b3Jk
+
+###
+
+
+
