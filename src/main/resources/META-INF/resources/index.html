@@ -1,57 +1,163 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Live JVM Heap Monitor</title>
+    <meta charset="UTF-8">
+    <title>Quarkus Chat!</title>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/css/patternfly.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/css/patternfly-additions.min.css">
+
     <style>
-        body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
-        h1 { color: #333; }
-        #heapDisplay {
-            font-size: 1.5em; font-weight: bold; color: #007bff;
-            background: #fff; padding: 10px 15px; border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: inline-block;
+        #chat {
+            resize: none;
+            overflow: hidden;
+            min-height: 300px;
+            max-height: 300px;
+            border: 1px solid darkslategray;
+            margin-bottom: 1em;
+            padding: 1em;
         }
-        #status { margin-top: 10px; color: #666; }
+
+        .message {
+
+        }
+
+        .system-message {
+            font-weight: bold;
+        }
+
+        .user {
+            font-weight: bold;
+            color: cornflowerblue;
+        }
+
+        .system-user {
+            font-weight: bold;
+            color: deeppink;
+        }
     </style>
 </head>
+
 <body>
-<h1>Live JVM Heap Monitor</h1>
-<p>Used Heap: <span id="heapDisplay">Initializing...</span></p>
-<p id="status">Status: Disconnected</p>
+<nav class="navbar navbar-default navbar-pf" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/">
+            <p><strong>>> Quarkus Chat!</strong></p>
+        </a>
+    </div>
+</nav>
+<div class="container">
+    <br/>
+    <div class="row">
+        <input id="name" class="col-md-4" type="text" placeholder="your name">
+        <button id="connect" class="col-md-1 btn btn-primary" type="button">connect</button>
+        <br/>
+        <br/>
+    </div>
+    <div class="row">
+        <div class="col-md-8" id="chat"></div>
+    </div>
+    <div class="row">
+        <input class="col-md-6" id="msg" type="text" placeholder="enter your message">
+        <button class="col-md-1 btn btn-primary" id="send" type="button" disabled>send</button>
+    </div>
 
-<script>
-    const display = document.getElementById('heapDisplay');
-    const status = document.getElementById('status');
+</div>
 
-    function connect() {
-        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        const url = `${protocol}//${window.location.host}/monitor/heap`;
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/js/patternfly.min.js"></script>
 
-        status.textContent = `Status: Connecting to ${url}...`;
+<script type="text/javascript">
+    // State
+    let connected = false;
+    let socket;
+    let username = "";
 
-        const ws = new WebSocket(url);
 
-        ws.onopen = () => {
-            status.textContent = 'Status: Connected';
-            display.textContent = 'Waiting...';
-        };
+    $(document).ready(function () {
+        let name = $("#name");
 
-        ws.onmessage = (event) => {
-            display.textContent = event.data;
-        };
+        $("#connect").click(connect);
+        $("#send").click(send);
 
-        ws.onclose = (event) => {
-            status.textContent = `Status: Disconnected (${event.code}). Reconnecting...`;
-            display.textContent = 'Offline';
-            setTimeout(connect, 5000);
-        };
+        name.keypress(function (event) {
+            if (event.keyCode == 13 || event.which == 13) {
+                connect();
+            }
+        });
 
-        ws.onerror = () => {
-            status.textContent = 'Status: Error';
-            display.textContent = 'Error';
-        };
-    }
+        $("#msg").keypress(function (event) {
+            if (event.keyCode == 13 || event.which == 13) {
+                send();
+            }
+        });
 
-    connect();
+        $("#chat").change(function () {
+            scrollToBottom();
+        });
+
+        name.focus();
+    });
+
+    let connect = function () {
+        if (!connected) {
+            let name = $("#name");
+            username = name.val();
+            socket = new WebSocket("ws://" + location.host + "/chat/" + username);
+            socket.onopen = function () {
+                connected = true;
+                console.log("Connected to the web socket");
+                $("#send").attr("disabled", false);
+                $("#connect").attr("disabled", true);
+                name.attr("disabled", true);
+                $("#msg").focus();
+            };
+            socket.onmessage = function (m) {
+                const chatMessage = JSON.parse(m.data);
+                let chat = $("#chat");
+                switch (chatMessage.type) {
+                    case "USER_JOINED":
+                        if (chatMessage.from !== username) {
+                            chat.append(`<span class='system-message'>${chatMessage.from} joined the chatroom.</span><br>`);
+                        } else {
+                            chat.append(`<span class='message'></span><span class='system-user'>System</span> : Howdy <span class="user">${chatMessage.from}</span>!.</span><br>`);
+                        }
+                        break;
+                    case "USER_LEFT":
+                        chat.append(`<span class='system-message'>${chatMessage.from} left the chatroom.</span><br>`);
+                        break;
+                    case "CHAT_MESSAGE":
+                        chat.append(`<span class='message'></span><span class='user'>${chatMessage.from}</span> : ${chatMessage.message} </span><br>`);
+                        break;
+                }
+                scrollToBottom();
+            };
+        }
+    };
+
+    let send = function () {
+        if (connected) {
+            let msg = $("#msg");
+            var value = msg.val();
+            var chatMessage = {
+                type: "CHAT_MESSAGE",
+                from: username,
+                message: value
+            };
+            socket.send(JSON.stringify(chatMessage));
+            msg.val("");
+        }
+    };
+
+    let scrollToBottom = function () {
+        let chat = $('#chat');
+        chat.scrollTop(chat[0].scrollHeight);
+    };
+
 </script>
 </body>
+
 </html>
