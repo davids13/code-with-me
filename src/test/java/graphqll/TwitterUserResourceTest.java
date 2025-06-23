@@ -7,7 +7,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 @QuarkusTest
-class UserResourceTest {
+class TwitterUserResourceTest {
 
     public static final String GRAPHQL = "/graphql";
     public static final String CONTENT_TYPE = "application/json";

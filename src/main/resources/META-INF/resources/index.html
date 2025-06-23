@@ -28,12 +28,12 @@
             font-weight: bold;
         }
 
-        .user {
+        .twitterUser {
             font-weight: bold;
             color: cornflowerblue;
         }
 
-        .system-user {
+        .system-twitterUser {
             font-weight: bold;
             color: deeppink;
         }
@@ -123,14 +123,14 @@
                         if (chatMessage.from !== username) {
                             chat.append(`<span class='system-message'>${chatMessage.from} joined the chatroom.</span><br>`);
                         } else {
-                            chat.append(`<span class='message'></span><span class='system-user'>System</span> : Howdy <span class="user">${chatMessage.from}</span>!.</span><br>`);
+                            chat.append(`<span class='message'></span><span class='system-twitterUser'>System</span> : Howdy <span class="twitterUser">${chatMessage.from}</span>!.</span><br>`);
                         }
                         break;
                     case "USER_LEFT":
                         chat.append(`<span class='system-message'>${chatMessage.from} left the chatroom.</span><br>`);
                         break;
                     case "CHAT_MESSAGE":
-                        chat.append(`<span class='message'></span><span class='user'>${chatMessage.from}</span> : ${chatMessage.message} </span><br>`);
+                        chat.append(`<span class='message'></span><span class='twitterUser'>${chatMessage.from}</span> : ${chatMessage.message} </span><br>`);
                         break;
                 }
                 scrollToBottom();
