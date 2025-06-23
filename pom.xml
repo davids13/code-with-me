@@ -106,6 +106,12 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-elytron-security-properties-file</artifactId>
         </dependency>
+        <!-- filtering -->
+        <dependency>
+            <groupId>io.quarkiverse.bucket4j</groupId>
+            <artifactId>quarkus-bucket4j</artifactId>
+            <version>1.0.5</version>
+        </dependency>
         <!-- test -->
         <dependency>
             <groupId>io.quarkus</groupId>

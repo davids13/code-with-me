@@ -130,7 +130,24 @@ GET http://localhost:8080/api/todos/1
 accept: */*
 Authorization: Basic Ym9iOmJvYnBhc3N3b3Jk
 
-###
+### rate limit (global)
+# curl http://localhost:8080/api/v1/metrics/cpu
+GET http://localhost:8080/api/v1/metrics/cpu
+
+### rate limit (by tenant id)
+GET http://localhost:8080/api/v1/metrics/memory
+accept: */*
+X-Tenant-ID: tenant-b
+
+### rate limit (pro and free)
+GET http://localhost:8080/api/v1/reports/generate
+Content-Type: */*
+X-Tenant-ID: tenant-free-user
+
+### rate limit (pro and free)
+GET http://localhost:8080/api/v1/reports/generate
+Content-Type: */*
+X-Tenant-ID: tenant-pro-user
 
 
 
