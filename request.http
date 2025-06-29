@@ -149,5 +149,10 @@ GET http://localhost:8080/api/v1/reports/generate
 Content-Type: */*
 X-Tenant-ID: tenant-pro-twitterUser
 
+### opentelementry
+GET http://localhost:8080/quests/start
+
+###
+
 
 

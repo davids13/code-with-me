@@ -117,6 +117,11 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-messaging-kafka</artifactId>
         </dependency>
+        <!-- opentelementry -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-opentelemetry</artifactId>
+        </dependency>
         <!-- test -->
         <dependency>
             <groupId>io.quarkus</groupId>
