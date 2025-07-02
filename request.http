@@ -152,7 +152,11 @@ X-Tenant-ID: tenant-pro-twitterUser
 ### opentelementry
 GET http://localhost:8080/quests/start
 
-###
-
+### headers
+GET http://localhost:8080/header
+Content-Type: */*
+### GZIP
+GET http://localhost:8080/header/large-payload
+Accept-Encoding: gzip
 
 
