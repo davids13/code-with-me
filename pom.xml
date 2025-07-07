@@ -122,6 +122,11 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-opentelemetry</artifactId>
         </dependency>
+        <!-- quartz -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-quartz</artifactId>
+        </dependency>
         <!-- test -->
         <dependency>
             <groupId>io.quarkus</groupId>
