@@ -1,0 +1,11 @@
+REST ERROR:
+
+Standard Rest Client:
+    - https://datatracker.ietf.org/doc/html/rfc7807
+
+How to create an error message:
+    - create business error structure like: ProblemDetail
+    - Custom Business Exceptions like: InsufficientFundsException
+    - create mapper like: BusinessErrorMapper
+        - with business error structure
+        - with Custom Business Exceptions as implements
