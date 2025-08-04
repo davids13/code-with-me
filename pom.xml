@@ -127,6 +127,22 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-quartz</artifactId>
         </dependency>
+        <!-- docling -->
+        <dependency>
+            <groupId>io.quarkiverse.docling</groupId>
+            <artifactId>quarkus-docling</artifactId>
+            <version>0.0.2</version>
+        </dependency>
+        <!-- config by yaml -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-config-yaml</artifactId>
+        </dependency>
+        <!-- health -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-health</artifactId>
+        </dependency>
         <!-- test -->
         <dependency>
             <groupId>io.quarkus</groupId>
